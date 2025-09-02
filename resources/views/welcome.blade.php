@@ -100,10 +100,11 @@
             </div>
 
             <div class="flex items-center space-x-4">
-                <a href="/login" class="text-gray-600 hover:text-gray-900 font-medium transition">
+                <a href="{{ route('filament.admin.auth.login') }}"
+                    class="text-gray-600 hover:text-gray-900 font-medium transition">
                     Sign In
                 </a>
-                <a href="/register"
+                <a href="{{ route('filament.admin.auth.register') }}"
                     class="px-6 py-2.5 btn-primary text-white rounded-full font-medium flex items-center justify-center">
                     Get Started
                 </a>

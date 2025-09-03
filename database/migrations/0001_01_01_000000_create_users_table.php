@@ -13,16 +13,12 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('group_id')->constrained()->onDelete('cascade'); // user belongs to a group
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('phone')->nullable();
-            $table->string('student_id')->nullable()->unique();
-            $table->string('staff_id')->nullable()->unique();
-            $table->enum('role', ['member', 'admin', 'treasurer'])->default('member');
-            $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->date('joined_at')->default(now());
+            $table->string('role')->default('member'); // member, official, admin 
             $table->rememberToken();
             $table->timestamps();
         });

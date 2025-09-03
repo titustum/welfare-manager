@@ -1,61 +1,63 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🫂 Welfare
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Welfare** is a staff-focused community support platform built for **schools**, **colleges**, and **institutions**. It enables staff members to contribute funds monthly into welfare groups, and support one another during important life events such as **childbirth**, **bereavement**, or **marriage**.
 
-## About Laravel
+Each group operates independently using a **multi-tenancy architecture**, allowing each institution or department to manage its welfare activities separately and securely.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🎯 Purpose
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+In many educational and professional institutions, staff members often form welfare associations to help each other during times of need. This system formalizes and digitizes that support structure, making it:
 
-## Learning Laravel
+- Transparent  
+- Well-organized  
+- Easy to manage  
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🌟 Key Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- ✅ Join welfare groups using a unique **group code**
+- ✅ **Monthly contributions** tracking
+- ✅ **Benefit disbursements** for members experiencing:
+  - Childbirth
+  - Death of a loved one
+  - Marriage
+- ✅ Role-based access: **members**, **officials**, **admins**
+- ✅ Independent data and activity per group (**multi-tenant**)
+- ✅ Admin dashboard powered by [Filament PHP](https://filamentphp.com/)
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🏗️ Built With
 
-### Premium Partners
+- **Laravel** – PHP web framework  
+- **Filament** – Modern admin panel and UI toolkit for Laravel  
+- **Tailwind CSS** – Utility-first CSS framework  
+- **MySQL/PostgreSQL** – Relational database  
+- **Livewire** – Reactive Laravel components
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 📌 Use Cases
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- School or college staff welfare associations  
+- University departments running independent welfare funds  
+- Any institution where colleagues regularly contribute to support one another
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 📄 License
 
-## Security Vulnerabilities
+This project is open-source and available under the [MIT License](LICENSE).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🙌 Acknowledgements
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Thanks to the open-source Laravel & Filament communities  
+- Inspired by real-world staff welfare initiatives in schools and colleges
+
+---
+

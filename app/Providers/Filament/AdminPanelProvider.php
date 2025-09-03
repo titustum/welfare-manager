@@ -31,6 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->login() 
             ->registration()
             ->passwordReset()
+            ->emailVerification()
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -48,7 +49,7 @@ class AdminPanelProvider extends PanelProvider
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
                 StartSession::class,
-                AuthenticateSession::class,
+                AuthenticateSession::class, 
                 ShareErrorsFromSession::class,
                 VerifyCsrfToken::class,
                 SubstituteBindings::class,
@@ -58,6 +59,6 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->tenant(Group::class, 'group');
+            ->tenant(Group::class);
     }
 }

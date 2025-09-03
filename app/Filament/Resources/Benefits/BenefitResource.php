@@ -20,7 +20,8 @@ class BenefitResource extends Resource
 {
     protected static ?string $model = Benefit::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedHeart;
+    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::Heart;
 
     protected static ?string $recordTitleAttribute = 'name';
 

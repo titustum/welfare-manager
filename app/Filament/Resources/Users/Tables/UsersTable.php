@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Disbursements\Tables;
+namespace App\Filament\Resources\Users\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -9,28 +9,20 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class DisbursementsTable
+class UsersTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('group_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('benefit_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('amount')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('disbursed_at')
-                    ->date()
-                    ->sortable(),
-                TextColumn::make('status')
+                TextColumn::make('name')
+                    ->searchable(),
+                TextColumn::make('email')
+                    ->label('Email address')
+                    ->searchable(),
+                // TextColumn::make('email_verified_at')
+                //     ->label('Verified'),
+                TextColumn::make('role')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()

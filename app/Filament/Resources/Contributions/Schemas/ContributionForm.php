@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\Contributions\Schemas;
 
+use App\Models\User;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -12,9 +14,11 @@ class ContributionForm
     {
         return $schema
             ->components([
-                TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('user_id')
+                    ->options(User::all()->pluck('name', 'id'))
+                    // ->relationship('user', 'name')
+                    // ->relationship('user', 'groups')
+                    ->required(),
                 TextInput::make('amount')
                     ->required()
                     ->numeric(),

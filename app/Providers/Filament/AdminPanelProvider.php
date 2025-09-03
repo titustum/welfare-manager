@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Tenancy\EditGroupProfile;
+use App\Filament\Pages\Tenancy\RegisterGroup;
 use App\Models\Group;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -59,6 +61,8 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->tenant(Group::class);
+            ->tenant(Group::class)
+            ->tenantRegistration(RegisterGroup::class)
+            ->tenantProfile(EditGroupProfile::class);
     }
 }

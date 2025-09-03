@@ -20,7 +20,9 @@ class ContributionResource extends Resource
 {
     protected static ?string $model = Contribution::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCurrencyDollar;
+    
+    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::CurrencyDollar;
 
     protected static ?string $recordTitleAttribute = 'contribution_date';
 

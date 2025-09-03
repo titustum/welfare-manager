@@ -20,7 +20,8 @@ class DisbursementResource extends Resource
 {
     protected static ?string $model = Disbursement::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPaperAirplane;
+    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::PaperAirplane;
 
     protected static ?string $recordTitleAttribute = 'amount';
 

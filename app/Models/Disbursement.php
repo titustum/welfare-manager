@@ -16,16 +16,21 @@ class Disbursement extends Model
         'notes',
     ];
 
+    // Relationships
+
+    // User who received the disbursement
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    // Group from which disbursement was made
     public function group()
     {
         return $this->belongsTo(Group::class);
     }
 
+    // Benefit type of the disbursement
     public function benefit()
     {
         return $this->belongsTo(Benefit::class);

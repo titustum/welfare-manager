@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->unique(); // Unique code for members to join
             $table->string('name');
             $table->text('description')->nullable();
             $table->timestamps();

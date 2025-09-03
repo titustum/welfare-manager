@@ -11,45 +11,37 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $fillable = [
+     protected $fillable = [
         'name',
         'email',
         'password',
-        'phone',
-        'student_id',
-        'staff_id',
-        'role',
-        'status',
-        'joined_at',
+        // Add 'group_id' here if single group per user, else skip
     ];
+
+    
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'joined_at' => 'date',
-    ];
+    // Relationships
 
+    // Groups the user belongs to (many-to-many)
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class)->withTimestamps();
+    }
+
+    // Contributions made by the user
     public function contributions()
     {
         return $this->hasMany(Contribution::class);
     }
 
-    public function benefitRequests()
+    // Disbursements received by the user
+    public function disbursements()
     {
-        return $this->hasMany(BenefitRequest::class);
-    }
-
-    public function payments()
-    {
-        return $this->hasMany(Payment::class);
-    }
-
-    public function reviewedBenefitRequests()
-    {
-        return $this->hasMany(BenefitRequest::class, 'reviewed_by');
+        return $this->hasMany(Disbursement::class);
     }
 }

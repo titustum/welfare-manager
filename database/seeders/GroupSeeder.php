@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Group;
 
 class GroupSeeder extends Seeder
 {
@@ -12,6 +12,21 @@ class GroupSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // Example groups
+        Group::create([
+            'name' => 'Health Welfare Group',
+            'description' => 'Supports health-related benefits',
+            // 'code' will be auto-generated in the model
+        ]);
+
+        Group::create([
+            'name' => 'Education Welfare Group',
+            'description' => 'Supports education-related benefits',
+        ]);
+
+        Group::create([
+            'name' => 'Community Welfare Group',
+            'description' => 'General community support welfare',
+        ]);
     }
 }

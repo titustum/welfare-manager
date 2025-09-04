@@ -41,7 +41,7 @@ class ContributionsStatsWidget extends StatsOverviewWidget
 
         return [
             // Current Month Performance (combines expected, collected, and collection rate)
-            Stat::make('Monthly Collection Progress', 'Ksh ' . number_format($actualPaidThisMonth, 2) . ' / ' . number_format($expectedThisMonth, 2))
+            Stat::make('Monthly Collection Progress', 'Ksh ' . number_format($actualPaidThisMonth) . ' / ' . number_format($expectedThisMonth))
                 ->description(number_format($collectionRate, 1) . '% collected • ' . $paidMembers . '/' . $totalMembers . ' members paid')
                 ->descriptionIcon($collectionRate >= 80 ? 'heroicon-m-arrow-trending-up' : ($collectionRate >= 50 ? 'heroicon-m-minus' : 'heroicon-m-arrow-trending-down'))
                 ->color($collectionRate >= 80 ? 'success' : ($collectionRate >= 50 ? 'warning' : 'danger'))

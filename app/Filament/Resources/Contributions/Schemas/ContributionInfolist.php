@@ -13,12 +13,11 @@ class ContributionInfolist
             ->components([
                 TextEntry::make('user.name'),
                 TextEntry::make('group.name'),
+                TextEntry::make('period')
+                    ->date(),
                 TextEntry::make('amount')
                     ->numeric(),
-                TextEntry::make('contribution_date')
-                    ->date(),
                 TextEntry::make('transaction_code'),
-                TextEntry::make('payment_method'),
                 TextEntry::make('created_at')
                     ->dateTime(),
                 TextEntry::make('updated_at')

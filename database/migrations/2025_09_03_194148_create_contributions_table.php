@@ -13,22 +13,22 @@ return new class extends Migration
     {
        Schema::create('contributions', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('group_id')->constrained()->onDelete('cascade');
 
-            $table->date('period'); // Represents the month this contribution is for (e.g. 2025-09-01)
+            $table->date('period'); // e.g. 2025-01-01, 2025-02-01
+            $table->decimal('amount', 12, 2);
 
-            $table->decimal('amount', 12, 2); // Allow partial amounts (e.g. 130.00)
+            $table->string('transaction_code'); // M-Pesa or bank transaction code
 
-            $table->string('transaction_code')->nullable(); // M-Pesa or bank transaction code
+            // Optional: track which month(s) this payment covers, but better in ContributionPeriod
+            $table->date('starting_period')->nullable();
 
             $table->timestamps();
 
-            // Ensure no duplicate full contributions for the same user/month in a group
-            // This does NOT block partials unless you enforce amount = 300
-            $table->unique(['user_id', 'group_id', 'period', 'transaction_code'], 'unique_user_period_transaction');
+            $table->unique(['user_id', 'group_id', 'period']); // prevent double entry for the same month
         });
+
 
     }
 

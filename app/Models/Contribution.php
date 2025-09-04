@@ -12,17 +12,17 @@ class Contribution extends Model
         'user_id',
         'group_id',
         'amount',
-        'contribution_date',
+        'period', // updated from contribution_date to period
         'transaction_code',
         'payment_method',
         'notes',
     ];
 
     protected $casts = [
-        'contribution_date' => 'date',
+        'period' => 'date',  // casting period as date
     ];
 
-    // 🔗 Relationships
+    // Relationships
 
     public function user(): BelongsTo
     {

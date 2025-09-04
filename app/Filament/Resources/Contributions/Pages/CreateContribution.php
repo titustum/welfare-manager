@@ -31,19 +31,16 @@ class CreateContribution extends CreateRecord
             'group_id' => $groupId,
             'amount' => $amount,
             'transaction_code' => $transactionCode,
+            'period' => $startingPeriod, // Optional: if you want to track starting period on contribution itself
             'contribution_date' => now(),
         ]);
 
         // Step 2: Apply payment to ContributionPeriods
-
         $remainingAmount = $amount;
-
-        // Get or create contribution periods starting from the startingPeriod,
-        // continuing forward until all amount is applied
         $period = $startingPeriod->copy();
 
         while ($remainingAmount > 0) {
-            // Try to find existing period record or create new
+            // Find or create the ContributionPeriod record for the current month
             $contribPeriod = \App\Models\ContributionPeriod::firstOrCreate(
                 [
                     'user_id' => $userId,
@@ -60,7 +57,7 @@ class CreateContribution extends CreateRecord
             $due = $contribPeriod->amount_due - $contribPeriod->amount_paid;
 
             if ($due <= 0) {
-                // Already fully paid, move to next month
+                // This period is already fully paid, move to next month
                 $period->addMonth();
                 continue;
             }
@@ -71,7 +68,7 @@ class CreateContribution extends CreateRecord
                 $contribPeriod->paid = true;
                 $remainingAmount -= $due;
             } else {
-                // Partial payment
+                // Partial payment for this period
                 $contribPeriod->amount_paid += $remainingAmount;
                 $contribPeriod->paid = false;
                 $remainingAmount = 0;
@@ -79,6 +76,7 @@ class CreateContribution extends CreateRecord
 
             $contribPeriod->save();
 
+            // Move to next month for next iteration/payment allocation
             $period->addMonth();
         }
 
@@ -86,5 +84,4 @@ class CreateContribution extends CreateRecord
 
         return $contribution;
     }
-
 }

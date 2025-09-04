@@ -19,15 +19,13 @@ class ContributionsTable
                     ->searchable(),
                 TextColumn::make('group.name')
                     ->searchable(),
+                TextColumn::make('period')
+                    ->date()
+                    ->sortable(),
                 TextColumn::make('amount')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('contribution_date')
-                    ->date()
-                    ->sortable(),
                 TextColumn::make('transaction_code')
-                    ->searchable(),
-                TextColumn::make('payment_method')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()

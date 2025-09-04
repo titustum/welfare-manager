@@ -5,7 +5,6 @@ namespace App\Filament\Resources\Contributions\Schemas;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
 
 class ContributionForm
@@ -16,24 +15,20 @@ class ContributionForm
             ->components([
                 Select::make('user_id')
                     ->relationship('user', 'name')
+                    ->label('Member')
                     ->required(),
+                // Select::make('group_id')
+                //     ->relationship('group', 'name')
+                //     ->required(),
                 DatePicker::make('starting_period')
-                    ->label('Start Month')
                     ->required()
-                    ->displayFormat('F Y')
                     ->default(now()->startOfMonth()),
+                DatePicker::make('period')
+                    ->required(),
                 TextInput::make('amount')
                     ->required()
                     ->numeric(),
-                DatePicker::make('contribution_date') 
-                    ->default(now()),
-                TextInput::make('transaction_code')
-                    ->required(),
-                TextInput::make('payment_method')
-                    ->required()
-                    ->default('mpesa'),
-                Textarea::make('notes')
-                    ->columnSpanFull(),
+                TextInput::make('transaction_code'),
             ]);
     }
 }

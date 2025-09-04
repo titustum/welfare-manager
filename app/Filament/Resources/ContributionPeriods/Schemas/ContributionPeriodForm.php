@@ -1,29 +1,36 @@
 <?php
 
-namespace App\Filament\Resources\Contributions\Schemas;
+namespace App\Filament\Resources\ContributionPeriods\Schemas;
 
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
-class ContributionForm
+class ContributionPeriodForm
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
+                Select::make('contribution_id')
+                    ->relationship('contribution', 'id')
+                    ->required(),
                 Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required(),
                 Select::make('group_id')
                     ->relationship('group', 'name')
                     ->required(),
-                TextInput::make('amount')
+                TextInput::make('month')
                     ->required()
                     ->numeric(),
-                DatePicker::make('contribution_date')
-                    ->required(),
+                TextInput::make('year')
+                    ->required()
+                    ->numeric(),
+                TextInput::make('amount')
+                    ->required()
+                    ->numeric()
+                    ->default(300),
             ]);
     }
 }

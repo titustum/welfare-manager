@@ -4,25 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Contribution extends Model
+class ContributionPeriod extends Model
 {
     protected $fillable = [
+        'contribution_id',
         'user_id',
         'group_id',
+        'month',
+        'year',
         'amount',
-        'contribution_date',
-        'transaction_code',
-        'payment_method',
-        'notes',
     ];
 
-    protected $casts = [
-        'contribution_date' => 'date',
-    ];
-
-    // 🔗 Relationships
+    public function contribution(): BelongsTo
+    {
+        return $this->belongsTo(Contribution::class);
+    }
 
     public function user(): BelongsTo
     {
@@ -33,9 +30,5 @@ class Contribution extends Model
     {
         return $this->belongsTo(Group::class);
     }
-
-    public function contributionPeriods(): HasMany
-    {
-        return $this->hasMany(ContributionPeriod::class);
-    }
 }
+

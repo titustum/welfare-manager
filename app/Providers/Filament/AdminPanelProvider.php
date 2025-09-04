@@ -63,6 +63,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->tenant(Group::class)
             ->tenantRegistration(RegisterGroup::class)
-            ->tenantProfile(EditGroupProfile::class);
+            ->tenantProfile(EditGroupProfile::class)
+            ->favicon(asset('images/welfare-logo.jpg')); // Use the tenant's logo;
     }
 }

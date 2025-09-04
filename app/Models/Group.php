@@ -23,14 +23,15 @@ class Group extends Model
         });
     }
 
-    public static function generateUniqueCode($length = 6)
+    public static function generateUniqueCode($length = 6, $prefix = 'GRP-')
     {
         do {
-            $code = strtoupper(Str::random($length));
+            $code = $prefix . strtoupper(Str::random($length));
         } while (self::where('code', $code)->exists());
 
         return $code;
     }
+
 
     // Relationships
 

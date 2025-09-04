@@ -17,7 +17,8 @@ class ContributionPeriodsTable
         return $table
             ->columns([
                 TextColumn::make('user.name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('group.name')
                     ->searchable(),
                 TextColumn::make('period')

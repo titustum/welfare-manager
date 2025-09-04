@@ -10,9 +10,10 @@ use Filament\Models\Contracts\HasTenants;
 use Filament\Models\Contracts\HasDefaultTenant;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany; 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Collection;
+use App\Models\ContributionPeriod;
 
 class User extends Authenticatable implements FilamentUser, HasTenants, HasDefaultTenant
 
@@ -110,6 +111,10 @@ class User extends Authenticatable implements FilamentUser, HasTenants, HasDefau
     public function isOfficialInGroup($groupId): bool
     {
         return $this->hasRoleInGroup($groupId, ['chair', 'secretary', 'treasurer']);
+    }
+
+    public function contributionPeriods(){
+        return $this->hasMany(ContributionPeriod::class);
     }
 
 }

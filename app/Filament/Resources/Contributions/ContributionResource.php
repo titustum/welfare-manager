@@ -23,7 +23,7 @@ class ContributionResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCurrencyDollar;
     protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::CurrencyDollar;
 
-    protected static ?string $recordTitleAttribute = 'amount';
+    protected static ?string $recordTitleAttribute = 'period';
 
     public static function form(Schema $schema): Schema
     {

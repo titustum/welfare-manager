@@ -11,25 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contributions', function (Blueprint $table) {
+       Schema::create('contributions', function (Blueprint $table) {
             $table->id();
 
-            // Foreign keys
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('group_id')->constrained()->onDelete('cascade');
 
-            // Payment info
-            $table->decimal('amount', 12, 2);
-            $table->date('contribution_date')->nullable(); // when contribution was made
-            $table->string('transaction_code')->unique();  // e.g., M-Pesa code
+            $table->date('period'); // Represents the month this contribution is for (e.g. 2025-09-01)
 
-            // Optional: if using multiple payment methods
-            $table->string('payment_method')->default('mpesa'); // e.g., 'mpesa', 'bank', 'manual'
+            $table->decimal('amount', 12, 2); // Allow partial amounts (e.g. 130.00)
 
-            // Optional: extra notes
-            $table->text('notes')->nullable();
+            $table->string('transaction_code')->nullable(); // M-Pesa or bank transaction code
 
             $table->timestamps();
+
+            // Ensure no duplicate full contributions for the same user/month in a group
+            // This does NOT block partials unless you enforce amount = 300
+            $table->unique(['user_id', 'group_id', 'period', 'transaction_code'], 'unique_user_period_transaction');
         });
 
     }

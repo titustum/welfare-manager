@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             ['name' => 'Charlie Brown', 'email' => 'charlie@example.com', 'password' => 'password123'],
         ];
 
-        foreach ($usersData as $userData) {
+        foreach ($usersData as $index => $userData) {
             // Create user
             $user = User::create([
                 'name' => $userData['name'],
@@ -32,8 +32,23 @@ class UserSeeder extends Seeder
                 'password' => Hash::make($userData['password']),
             ]);
 
-            // Attach user to all groups (or pick specific groups as needed)
-            $user->groups()->attach($groups->pluck('id')->toArray());
+            // Attach user to groups with roles
+            foreach ($groups as $group) {
+                // Assign roles differently based on user & group (example)
+                // Customize this logic as needed
+                $role = 'member';
+
+                if ($index === 0 && $group->id === $groups->first()->id) {
+                    $role = 'chair';  // Alice is chair in first group
+                } elseif ($index === 1 && $group->id === $groups->first()->id) {
+                    $role = 'secretary';  // Bob is secretary in first group
+                } elseif ($index === 2 && $group->id === $groups->first()->id) {
+                    $role = 'treasurer';  // Charlie is treasurer in first group
+                }
+
+                // Attach user to group with role
+                $user->groups()->attach($group->id, ['role' => $role]);
+            }
         }
     }
 }

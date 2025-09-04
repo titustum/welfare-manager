@@ -58,8 +58,20 @@ class User extends Authenticatable implements FilamentUser, HasTenants, HasDefau
 
     public function groups(): BelongsToMany
     {
-        return $this->belongsToMany(Group::class, 'group_user')->withTimestamps();
+        return $this->belongsToMany(Group::class)
+            ->withPivot('role')
+            ->withTimestamps();
     }
+
+    // public function getRoleInGroup($groupId)
+    // {
+    //     return $this->groups()->where('group_id', $groupId)->first()?->pivot->role;
+    // }
+
+    // public function groups(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Group::class, 'group_user')->withTimestamps();
+    // }
 
     public function getTenants(Panel $panel): Collection
     {
@@ -75,4 +87,29 @@ class User extends Authenticatable implements FilamentUser, HasTenants, HasDefau
     {
         return $this->groups()->first();
     }
+
+
+    public function getRoleInGroup($groupId): ?string
+    {
+        return $this->groups()
+            ->where('group_id', $groupId)
+            ->first()
+            ?->pivot
+            ?->role;
+    }
+
+    public function hasRoleInGroup($groupId, string|array $roles): bool
+    {
+        $role = $this->getRoleInGroup($groupId);
+
+        return is_array($roles)
+            ? in_array($role, $roles)
+            : $role === $roles;
+    }
+
+    public function isOfficialInGroup($groupId): bool
+    {
+        return $this->hasRoleInGroup($groupId, ['chair', 'secretary', 'treasurer']);
+    }
+
 }

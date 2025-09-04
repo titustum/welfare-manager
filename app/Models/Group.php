@@ -36,10 +36,10 @@ class Group extends Model
     // Relationships
 
     // Users belonging to this group (many-to-many)
-    public function users()
-    {
-        return $this->belongsToMany(User::class)->withTimestamps();
-    }
+    // public function users()
+    // {
+    //     return $this->belongsToMany(User::class)->withTimestamps();
+    // }
 
     // Benefits that belong to this group
     public function benefits()
@@ -58,4 +58,23 @@ class Group extends Model
     {
         return $this->hasMany(Disbursement::class);
     }
+
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)
+            ->withPivot('role')
+            ->withTimestamps();
+    }
+
+    public function members()
+    {
+        return $this->users()->wherePivot('role', 'member');
+    }
+
+    public function officials()
+    {
+        return $this->users()->whereIn('group_user.role', ['chair', 'secretary', 'treasurer']);
+    }
+
 }

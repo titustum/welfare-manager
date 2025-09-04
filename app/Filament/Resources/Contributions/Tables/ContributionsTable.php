@@ -25,6 +25,10 @@ class ContributionsTable
                 TextColumn::make('contribution_date')
                     ->date()
                     ->sortable(),
+                TextColumn::make('transaction_code')
+                    ->searchable(),
+                TextColumn::make('payment_method')
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Facades\Filament;
 
 class UsersTable
 {
@@ -19,11 +20,18 @@ class UsersTable
                     ->searchable(),
                 TextColumn::make('email')
                     ->label('Email address')
-                    ->searchable(),
-                // TextColumn::make('email_verified_at')
-                //     ->label('Verified'),
-                TextColumn::make('role')
-                    ->searchable(),
+                    ->searchable(), 
+                 TextColumn::make('role_in_group')
+                    ->label('Group Role') 
+                    ->getStateUsing(function ($record) {
+                        $group = Filament::getTenant();
+                        if (!$group) {
+                            return '-';
+                        }
+
+                        // Assuming User model has a method: getRoleInGroup($groupId)
+                        return ucfirst($record->getRoleInGroup($group->id)) ?? '-';
+                    }),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
